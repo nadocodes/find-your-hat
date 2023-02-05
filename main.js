@@ -1,9 +1,12 @@
 const prompt = require('prompt-sync')({sigint: true});
+var colors = require('colors');
 
-const hat = '^';
-const hole = 'O';
-const fieldCharacter = '░';
-const pathCharacter = '*';
+colors.enable();
+
+const hat = '^'.green;
+const hole = 'O'.red;
+const fieldCharacter = '░'.blue;
+const pathCharacter = '*'.magenta;
 
 class Field {
   constructor(field) {
@@ -59,15 +62,15 @@ class Field {
       for (let j = 0; j < width; j++) {
         let randomNum = Math.random();
         if (randomNum < percentage) {
-          row.push('O');
+          row.push(hole);
         } else {
-          row.push('░');
+          row.push(fieldCharacter);
         }
       }
       field.push(row); // add the row to the field
     }
-    field[0][0] = '*'; // start at the top left
-    field[height - 1][width - 1] = '^'; // end at the bottom right
+    field[0][0] = pathCharacter; // start at the top left
+    field[height - 1][width - 1] = hat; // end at the bottom right
     return field;
   }
 }
