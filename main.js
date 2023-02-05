@@ -18,7 +18,7 @@ class Field {
     let playing = true;
     while (playing) {
       this.print();
-      let move = prompt('Which way? ').toUpperCase();
+      let move = prompt('Which way? "u=↑, r=→, d=↓, l=←" ').toUpperCase();
       if (move === 'U') {
         y--; // move up one row
         } else if (move === 'D') {
@@ -33,7 +33,11 @@ class Field {
         else {
         console.log('Invalid move!');
         }
-        if (this.field[y][x] === hole) {  // fell down a hole
+        if (y < 0 || y >= this.field.length || x < 0 || x >= this.field[0].length) {
+          console.log('YOU ARE OUTSIDE!'); // went outside the field
+          playing = false;
+        }
+        else if (this.field[y][x] === hole) {  // fell down a hole
         console.log('Game Over! You fell down a hole!');
         playing = false; // game over
         }
@@ -44,10 +48,7 @@ class Field {
         else {
         this.field[y][x] = pathCharacter; // show character on field
         }
-        if (y < 0 || y >= this.field.length || x < 0 || x >= this.field[0].length) {
-        console.log('YOU ARE OUTSIDE!'); // went outside the field
-        playing = false;
-        }
+
       }
   }
   print() { // print the field
