@@ -30,6 +30,7 @@ class Field {
       } else {
         console.log("Invalid move!");
       }
+      console.clear() // clear the console
       if (
         y < 0 ||
         y >= this.field.length ||
